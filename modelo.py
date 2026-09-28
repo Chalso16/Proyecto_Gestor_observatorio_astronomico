@@ -1,6 +1,13 @@
+#Apartado 1: Definir 4 clases principales con sus constructores
+#Apartado 2: Añadir encapsulamiento (getter)
+#Apartado 4: Sobrecarga __repr__ (representar obj como texto) y __eq__ (para decidir cuando dos obj son iguales)
+#Apartado 6: Uso de tuplas o listas
+
 from types import NotImplementedType
 
+#1. clase1
 class ObjetoCeleste:
+    #1. constructor, 6. uso de tupla
     def __init__(self, identificador:str, tipo:str, coordenadas:tuple[float,float]) -> None:
         # .strip() quita los espacios
         if not identificador.strip() or not tipo.strip():
@@ -15,8 +22,7 @@ class ObjetoCeleste:
         self._tipo = tipo.strip()
         self.__coordenadas = coordenadas
 
-
-    #getters
+    # 2. getters (encapsulamiento)
     @property
     def identificador(self) -> str:
         return self._identificador
@@ -29,7 +35,7 @@ class ObjetoCeleste:
     def coordenadas(self) -> tuple[float, float]:
         return self.__coordenadas
 
-    #sobrecarga repesentacion
+    #sobrecarga representacion como texto
     def __repr__(self) -> str:
         return f"ObjetoCeleste({self.identificador!r}, {self.tipo!r}, {self.coordenadas!r})"
 
@@ -41,16 +47,16 @@ class ObjetoCeleste:
         #retorno de igualdad por valor
         return (self.identificador, self.tipo, self.coordenadas) == (otro.identificador, otro.tipo, otro.coordenadas)
 
-
+#1. clase2
 class Telescopio :
     UNIDAD_HORAS = 'h'
-
+    #1. constructor
     def __init__(self, nombre:str, horas_uso:int = 0) -> None:
         #usamos el setter
         self.nombre = nombre
         self.horas_uso = horas_uso
 
-    #getter
+    #2. getter (encapsulamiento)
     @property
     def nombre(self) -> str:
         return self.__nombre
@@ -77,8 +83,9 @@ class Telescopio :
         #Aqui se instancia el atributo
         self.__horas_uso = nuevo_valor
 
-
+#1. clase3
 class SesionObservacion:
+    #1. constructor
     def __init__(self, fecha:str, telescopio:Telescopio, objetivo:ObjetoCeleste) -> None:
         #instanciar atributos
         self.fecha = fecha
@@ -91,14 +98,17 @@ class SesionObservacion:
             f"con {self.telescopio.nombre}"
         )
 
+#1. clase4
 class CatalogoObservatorio:
+    #1. constructor, 6. uso de lista
     def __init__(self, nombre:str, objetos_iniciales:list[ObjetoCeleste]) -> None:
         #instanciar atributos
         self.nombre = nombre
         self.objetos = objetos_iniciales
+        #capacidad maxima de 24
         self.__capacidad_maxima = len(objetos_iniciales) * 3
 
-    #getter
+    #2. getter (encapsulamiento)
     @property
     def capacidad_maxima(self) -> int:
         return self.__capacidad_maxima
