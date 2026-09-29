@@ -1,5 +1,5 @@
 #Apartado 3
-
+#Comprobacion codigo con fallo
 class InventarioConFallo:
     def __init__(self, nombre:str, productos:list[str] = []) -> None:
         self.nombre = nombre
@@ -8,6 +8,7 @@ class InventarioConFallo:
     def anadir(self, producto: str) -> None:
         self.productos.append(producto)
 
+#Comprobacion codigo SIN fallo
 class Inventario:
     def __init__(self, nombre:str, productos: list[str] | None = None) -> None:
         self.nombre = nombre
